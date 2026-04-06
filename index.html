@@ -512,7 +512,7 @@
           <textarea id="memo" class="form-input form-textarea" placeholder="추가로 알려줄 거 있으면 적어주이소~" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="form-submit" onclick="event.preventDefault(); alert('아직 연동 준비 중입니더! 조금만 기다려주이소~');">차량 정보 제출하기 &#8594;</button>
+        <button type="submit" class="form-submit">차량 정보 제출하기 &#8594;</button>
       </form>
 
       <p class="survey-note">&#128161; 카풀 매칭이나 전세버스 여부를 결정하는 데 필요한 정보라예. 꼭 적어주이소!</p>
@@ -523,6 +523,87 @@
   <footer class="footer">
     <p>&copy; 2026 마켓핏랩 &middot; 4월 봄 길드하우스</p>
   </footer>
+
+  <script>
+  document.getElementById('transport-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    if (!name) { alert('이름을 적어주이소~'); return; }
+
+    const hasCar = document.querySelector('input[name="has-car"]:checked');
+    if (!hasCar) { alert('차량 유무를 선택해주이소~'); return; }
+
+    const isDriver = hasCar.value === 'yes';
+
+    // 출발 날짜
+    const dayRadio = isDriver
+      ? document.querySelector('input[name="depart-day"]:checked')
+      : document.querySelector('input[name="hope-day"]:checked');
+
+    // 출발 시간 & 장소
+    const time = isDriver
+      ? document.getElementById('depart-time').value.trim()
+      : document.getElementById('hope-time').value.trim();
+    const place = isDriver
+      ? document.getElementById('depart-place').value.trim()
+      : document.getElementById('hope-place').value.trim();
+
+    // 탑승 가능 인원
+    let seats = '';
+    if (isDriver) {
+      const seatsRadio = document.querySelector('input[name="seats"]:checked');
+      if (seatsRadio) {
+        seats = seatsRadio.value === 'other'
+          ? document.getElementById('seats-custom-input').value.trim()
+          : seatsRadio.value + '명';
+      }
+    }
+
+    const memo = document.getElementById('memo').value.trim();
+
+    // 날짜 매핑
+    const dayMap = { '4/23': '4/23 (목)', '4/24': '4/24 (금)', '4/25': '4/25 (토)' };
+
+    const fields = {
+      '이름': name,
+      '차량 유무': isDriver ? '차 있습니더' : '차 없습니더',
+      '제출일시': new Date().toISOString()
+    };
+    if (dayRadio) fields['출발 날짜'] = dayMap[dayRadio.value] || dayRadio.value;
+    if (time) fields['출발 시간'] = time;
+    if (place) fields['출발 장소'] = place;
+    if (seats) fields['탑승 가능 인원'] = seats;
+    if (memo) fields['메모'] = memo;
+
+    const btn = this.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = '제출 중...';
+
+    try {
+      const res = await fetch('/api/transport', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fields: fields })
+      });
+
+      if (res.ok) {
+        alert('제출 완료됐습니더! 고맙습니더~ 🙏');
+        this.reset();
+        document.getElementById('car-fields').style.display = 'none';
+        document.getElementById('nocar-fields').style.display = 'none';
+      } else {
+        const err = await res.json();
+        alert('제출 실패했습니더... 다시 시도해주이소.\n' + (err.error?.message || ''));
+      }
+    } catch (error) {
+      alert('네트워크 오류가 났습니더. 다시 시도해주이소.');
+    }
+
+    btn.disabled = false;
+    btn.textContent = '차량 정보 제출하기 →';
+  });
+  </script>
 
 </body>
 </html>
