@@ -1,5 +1,5 @@
 /* ============================================
-   길하 봄 길드하우스 - 하동
+   4월 봄 길드하우스 - 하동
    Design: 농촌/마을 방송 테마
    ============================================ */
 
@@ -629,6 +629,57 @@ section {
   font-style: italic;
 }
 
+.program-meta {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--brown);
+  font-weight: 600;
+  font-style: normal;
+}
+
+.program-class-list li {
+  margin-bottom: 1rem;
+}
+
+.program-class-list li:last-child {
+  margin-bottom: 0;
+}
+
+.program-class-desc {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.program-class-list a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.program-class-list a:hover {
+  color: var(--brown);
+}
+
+.program-apply-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.program-apply-btn:hover {
+  background: var(--brown);
+}
+
 /* --- Schedule Section --- */
 .schedule {
   background: var(--white);
@@ -1229,6 +1280,7 @@ section {
 @media (min-width: 480px) {
   .program-grid {
     grid-template-columns: repeat(2, 1fr);
+    align-items: start;
   }
 
   .cta-buttons {
