@@ -400,7 +400,7 @@
       <p class="cta-desc">
         누가 오는지, 같이 자는 사람은 몇 명인지,<br>
         또 모시고 올 손님은 있는지 알아야 안 되겠습니꺼.<br>
-        <strong>차량 정보도 같이 적어주이소!</strong>
+        <strong>차량 등록은 아래 별도 페이지에서 해주이소!</strong>
       </p>
 
       <div class="cta-buttons">
@@ -427,93 +427,11 @@
     <div class="container">
       <span class="section-label">&#128663; Transport</span>
       <h2 class="section-title">차량 확인합니더!</h2>
-      <p class="section-desc">카풀이나 차량 대절을 알아보려카이, 여러분 차량 정보를 알아야 합니더.</p>
+      <p class="section-desc">카풀이나 차량 대절을 알아보려카이, 여러분 차량 정보를 알아야 합니더.<br>아래 버튼 눌러서 등록해주이소!</p>
 
-      <form class="survey-form" id="transport-form">
-        <!-- 이름 -->
-        <div class="form-group">
-          <label class="form-label" for="name">이름</label>
-          <input type="text" id="name" class="form-input" placeholder="이름을 적어주이소">
-        </div>
-
-        <!-- 차량 유무 -->
-        <div class="form-group">
-          <label class="form-label">차량 유무</label>
-          <div class="form-radio-group">
-            <label class="form-radio">
-              <input type="radio" name="has-car" value="yes" onchange="document.getElementById('car-fields').style.display='block'; document.getElementById('nocar-fields').style.display='none';">
-              <span class="form-radio-custom"></span>
-              &#128664; 차 있습니더
-            </label>
-            <label class="form-radio">
-              <input type="radio" name="has-car" value="no" onchange="document.getElementById('nocar-fields').style.display='block'; document.getElementById('car-fields').style.display='none';">
-              <span class="form-radio-custom"></span>
-              &#128075; 차 없습니더
-            </label>
-          </div>
-        </div>
-
-        <!-- 차 있는 분 필드 -->
-        <div id="car-fields" class="form-conditional" style="display:none;">
-          <div class="form-group">
-            <label class="form-label">&#128197; 출발 날짜</label>
-            <div class="form-chip-group">
-              <label class="form-chip"><input type="radio" name="depart-day" value="4/23"><span>4/23 (목)</span></label>
-              <label class="form-chip"><input type="radio" name="depart-day" value="4/24"><span>4/24 (금)</span></label>
-              <label class="form-chip"><input type="radio" name="depart-day" value="4/25"><span>4/25 (토)</span></label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="depart-time">&#128336; 출발 시간</label>
-            <input type="text" id="depart-time" class="form-input" placeholder="예: 오후 2시">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="depart-place">&#128205; 출발 장소</label>
-            <input type="text" id="depart-place" class="form-input" placeholder="예: 강남역, 수원 등">
-          </div>
-          <div class="form-group">
-            <label class="form-label">&#128101; 탑승 가능 인원 (본인 제외)</label>
-            <div class="form-chip-group">
-              <label class="form-chip"><input type="radio" name="seats" value="1" onchange="document.getElementById('seats-custom').style.display='none';"><span>1명</span></label>
-              <label class="form-chip"><input type="radio" name="seats" value="2" onchange="document.getElementById('seats-custom').style.display='none';"><span>2명</span></label>
-              <label class="form-chip"><input type="radio" name="seats" value="3" onchange="document.getElementById('seats-custom').style.display='none';"><span>3명</span></label>
-              <label class="form-chip"><input type="radio" name="seats" value="4" onchange="document.getElementById('seats-custom').style.display='none';"><span>4명</span></label>
-              <label class="form-chip"><input type="radio" name="seats" value="other" onchange="document.getElementById('seats-custom').style.display='block'; document.getElementById('seats-custom-input').focus();"><span>그 이상</span></label>
-            </div>
-            <div id="seats-custom" style="display:none; margin-top:0.5rem;">
-              <input type="text" id="seats-custom-input" class="form-input" placeholder="몇 명 태울 수 있는기고?">
-            </div>
-          </div>
-        </div>
-
-        <!-- 차 없는 분 필드 -->
-        <div id="nocar-fields" class="form-conditional" style="display:none;">
-          <div class="form-group">
-            <label class="form-label">&#128197; 출발 희망 날짜</label>
-            <div class="form-chip-group">
-              <label class="form-chip"><input type="radio" name="hope-day" value="4/23"><span>4/23 (목)</span></label>
-              <label class="form-chip"><input type="radio" name="hope-day" value="4/24"><span>4/24 (금)</span></label>
-              <label class="form-chip"><input type="radio" name="hope-day" value="4/25"><span>4/25 (토)</span></label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="hope-time">&#128336; 출발 희망 시간</label>
-            <input type="text" id="hope-time" class="form-input" placeholder="예: 오후 2시쯤">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="hope-place">&#128205; 출발 희망 장소</label>
-            <input type="text" id="hope-place" class="form-input" placeholder="예: 강남역, 사당역 등">
-          </div>
-        </div>
-
-        <!-- 메모 -->
-        <div class="form-group">
-          <label class="form-label" for="memo">메모 (선택)</label>
-          <textarea id="memo" class="form-input form-textarea" placeholder="추가로 알려줄 거 있으면 적어주이소~" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="form-submit">차량 정보 제출하기 &#8594;</button>
-      </form>
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="https://car-share-ashy.vercel.app/" target="_blank" class="form-submit" style="display:inline-block; text-decoration:none;">차량 등록하러 가기 &#8594;</a>
+      </div>
 
       <p class="survey-note">&#128161; 카풀 매칭이나 전세버스 여부를 결정하는 데 필요한 정보라예. 꼭 적어주이소!</p>
     </div>
@@ -524,86 +442,6 @@
     <p>&copy; 2026 마켓핏랩 &middot; 4월 봄 길드하우스</p>
   </footer>
 
-  <script>
-  document.getElementById('transport-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    if (!name) { alert('이름을 적어주이소~'); return; }
-
-    const hasCar = document.querySelector('input[name="has-car"]:checked');
-    if (!hasCar) { alert('차량 유무를 선택해주이소~'); return; }
-
-    const isDriver = hasCar.value === 'yes';
-
-    // 출발 날짜
-    const dayRadio = isDriver
-      ? document.querySelector('input[name="depart-day"]:checked')
-      : document.querySelector('input[name="hope-day"]:checked');
-
-    // 출발 시간 & 장소
-    const time = isDriver
-      ? document.getElementById('depart-time').value.trim()
-      : document.getElementById('hope-time').value.trim();
-    const place = isDriver
-      ? document.getElementById('depart-place').value.trim()
-      : document.getElementById('hope-place').value.trim();
-
-    // 탑승 가능 인원
-    let seats = '';
-    if (isDriver) {
-      const seatsRadio = document.querySelector('input[name="seats"]:checked');
-      if (seatsRadio) {
-        seats = seatsRadio.value === 'other'
-          ? document.getElementById('seats-custom-input').value.trim()
-          : seatsRadio.value + '명';
-      }
-    }
-
-    const memo = document.getElementById('memo').value.trim();
-
-    // 날짜 매핑
-    const dayMap = { '4/23': '4/23 (목)', '4/24': '4/24 (금)', '4/25': '4/25 (토)' };
-
-    const fields = {
-      '이름': name,
-      '차량 유무': isDriver ? '차 있습니더' : '차 없습니더',
-      '제출일시': new Date().toISOString()
-    };
-    if (dayRadio) fields['출발 날짜'] = dayMap[dayRadio.value] || dayRadio.value;
-    if (time) fields['출발 시간'] = time;
-    if (place) fields['출발 장소'] = place;
-    if (seats) fields['탑승 가능 인원'] = seats;
-    if (memo) fields['메모'] = memo;
-
-    const btn = this.querySelector('.form-submit');
-    btn.disabled = true;
-    btn.textContent = '제출 중...';
-
-    try {
-      const res = await fetch('/api/transport', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields: fields })
-      });
-
-      if (res.ok) {
-        alert('제출 완료됐습니더! 고맙습니더~ 🙏');
-        this.reset();
-        document.getElementById('car-fields').style.display = 'none';
-        document.getElementById('nocar-fields').style.display = 'none';
-      } else {
-        const err = await res.json();
-        alert('제출 실패했습니더... 다시 시도해주이소.\n' + (err.error?.message || ''));
-      }
-    } catch (error) {
-      alert('네트워크 오류가 났습니더. 다시 시도해주이소.');
-    }
-
-    btn.disabled = false;
-    btn.textContent = '차량 정보 제출하기 →';
-  });
-  </script>
 
 </body>
 </html>
